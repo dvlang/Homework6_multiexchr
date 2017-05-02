@@ -15,7 +15,7 @@ void exchanger::exchanging() {
 
 		permit->lock();
 
-		cout << "Device: "<< device <<" at " << sc_time_stamp() <<" is granted the use of memory ...\n";
+		cout << "Device: "<< device <<" at " << sc_time_stamp() <<" is granted WRITE to memory ...\n";
 
 		startaddr = rand() % ADDR_SPACE;
 
@@ -40,5 +40,12 @@ void exchanger::exchanging() {
 		cout << "Device: "<< device <<" is done.\n";
 
 		permit->unlock();
+	
+	//try reading too
+		if (wrpermit.trywait() != -1) {
+			//wrpermit.wait();
+			cout << "Device: " << device << " at " << sc_time_stamp() << " is granted READ to memory ...\n";
+			//wrpermit.put();
+		}
 	}
 }
