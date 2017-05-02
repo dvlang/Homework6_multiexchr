@@ -5,10 +5,12 @@ void exchanger::exchanging() {
 	int i, dval, startaddr;
 
 	srand(device*(unsigned)time(NULL));
-
+	//srand(time(NULL));
 	while(true) {
 		cout << "Device: "<< device <<" at " << sc_time_stamp() <<" is idle ...\n";
+		//srand(time(NULL));
 		wait(delay*30,SC_NS);
+	//	wait(delay*unsigned(rand()%30), SC_NS);
 		cout << "Device: "<< device <<" at " << sc_time_stamp() <<" has requested ...\n";
 
 		permit->lock();
@@ -24,6 +26,8 @@ void exchanger::exchanging() {
 			cs = (sc_logic)'1';
 			rwbar = (sc_logic)'0';
 			wait(delay,SC_NS);
+		//	wait(rand()%delay, SC_NS);
+			//wait(delay*unsigned(rand() % 30), SC_NS);
 		}
 
 		cs = (sc_logic)'Z';

@@ -2,17 +2,20 @@
 
 int sc_main(int argc, char* argv[])
 {
-	multiExchanger EXC1 ("EXC_Instance");
+	multiExchanger EXC_TB ("EXC_Instance");
 
 	sc_trace_file* VCDFile;
 	VCDFile = sc_create_vcd_trace_file("dataExchange");
-		sc_trace(VCDFile, EXC1.databusin, "inb");
-		sc_trace(VCDFile, EXC1.databusout, "oub");
-		sc_trace(VCDFile, EXC1.addrbus, "adb");
-		sc_trace(VCDFile, EXC1.cs, "cs");
-		sc_trace(VCDFile, EXC1.rwbar, "rwb");
+		sc_trace(VCDFile, EXC_TB.databusin, "inb");
+		sc_trace(VCDFile, EXC_TB.databusout, "oub");
+		sc_trace(VCDFile, EXC_TB.addrbus, "adb");
+		sc_trace(VCDFile, EXC_TB.cs1, "cs1");
+		sc_trace(VCDFile, EXC_TB.cs2, "cs2");
+		sc_trace(VCDFile, EXC_TB.cs3, "cs3");
+		sc_trace(VCDFile, EXC_TB.cs4, "cs4");
+		sc_trace(VCDFile, EXC_TB.rwbar, "rwb");
 
-	sc_start(2100,SC_NS);
+	sc_start(10000,SC_NS);
 	return 0;
 }
 
