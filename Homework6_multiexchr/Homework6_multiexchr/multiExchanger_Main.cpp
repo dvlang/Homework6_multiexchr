@@ -13,8 +13,10 @@ int sc_main(int argc, char* argv[])
 		sc_trace(VCDFile, EXC_TB.cs2, "cs2");
 		sc_trace(VCDFile, EXC_TB.cs3, "cs3");
 		sc_trace(VCDFile, EXC_TB.cs4, "cs4");
-		sc_trace(VCDFile, EXC_TB.rwbar, "rwb");
-
+		sc_trace(VCDFile, EXC_TB.rwbar1, "rwb1");
+		sc_trace(VCDFile, EXC_TB.rwbar2, "rwb2");
+		sc_trace(VCDFile, EXC_TB.rwbar3, "rwb3");
+		sc_trace(VCDFile, EXC_TB.rwbar4, "rwb4");
 	sc_start(10000,SC_NS);
 	return 0;
 }
