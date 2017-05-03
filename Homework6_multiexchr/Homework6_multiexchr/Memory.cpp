@@ -3,7 +3,8 @@
 void Memory::meminit() {
 	int i;
 	for(i=0;i<ADDR_SPACE;i++) {
-		mem[i] = i;
+		//mem[i] = i;
+		mem[i] = 0;
 	}
 }
 
@@ -65,4 +66,5 @@ void Memory::memdump() {
 		data=mem[i];
 		out << i <<":\t" << data << "\n";
 	}
+
 }

@@ -29,7 +29,8 @@ void exchanger::exchanging() {
 
 			cout << "Device: " << device << " at " << sc_time_stamp() << " is granted the use of memory ...\n";
 
-			startaddr = rand() % ADDR_SPACE;
+			//startaddr = rand() % ADDR_SPACE;
+			startaddr = device*100;
 			numreadbytes = rand() % 63;	//randomize the number of bytes to read
 
 			//for (i = 0; i <= 63; i++) {
@@ -40,6 +41,7 @@ void exchanger::exchanging() {
 				addr = (sc_lv<ADDRESS>)(startaddr + i);
 				cs = (sc_logic)'1';
 				rwbar = (sc_logic)'0';
+				cout << "Device: " << device << " at " << sc_time_stamp() << " WRITE to memory ADDR:  " << addr << " DATA: " << datain << endl;
 				wait(delay, SC_NS);	//each device will have its own delay
 
 			}
@@ -64,13 +66,15 @@ void exchanger::exchanging() {
 			readpermit->wait();
 
 			cout << "Device: " << device << " at " << sc_time_stamp() << " Got a read semaphore " << "\n";
-			startaddr = rand() % ADDR_SPACE;
+			//startaddr = rand() % ADDR_SPACE;
+			startaddr = device * 100;
+			
 			numreadbytes = rand() % 63;
 			for (i = 0; i < numreadbytes; i++) {
 				addr = (sc_lv<ADDRESS>)(startaddr + i);
 				cs = (sc_logic)'1';
 				rwbar = (sc_logic)'1';
-				cout << "Device: " << device << " reads from memory: " << dataout << endl;
+				cout << "Device: " << device << " at " << sc_time_stamp() << " READ from memory ADDR:  "<< addr<< " DATA: " << dataout << endl;
 
 				wait(delay, SC_NS);
 			}
