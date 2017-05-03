@@ -12,6 +12,7 @@ SC_MODULE(exchanger)
 	sc_out_resolved cs, rwbar;
 
 	sc_mutex* permit;
+	sc_semaphore* readpermit;
 
 	SC_HAS_PROCESS(exchanger);
 

@@ -2,16 +2,18 @@
 #include <time.h>
 
 void exchanger::exchanging() {
-	int i, dval, startaddr;
+	int i, dval, startaddr, numreadbytes;
 
 	srand(device*(unsigned)time(NULL));
-	//srand(time(NULL));
+
 	while(true) {
 		cout << "Device: "<< device <<" at " << sc_time_stamp() <<" is idle ...\n";
 		//srand(time(NULL));
 		wait(delay*30,SC_NS);
-	//	wait(delay*unsigned(rand()%30), SC_NS);
-		cout << "Device: "<< device <<" at " << sc_time_stamp() <<" has requested ...\n";
+	
+	//********WRITING************
+	/*  !!!!(UN)COMMENT ME TO ADD WRITE PROCESS IN, COMMENT WRITE PROCESS OUT TO EASILY SEE 3 READ SEMAPHORES WORKING!!!!!
+		cout << "Device: "<< device <<" at " << sc_time_stamp() <<" has requested to write...\n";
 
 		permit->lock();
 
@@ -26,8 +28,7 @@ void exchanger::exchanging() {
 			cs = (sc_logic)'1';
 			rwbar = (sc_logic)'0';
 			wait(delay,SC_NS);
-		//	wait(rand()%delay, SC_NS);
-			//wait(delay*unsigned(rand() % 30), SC_NS);
+
 		}
 
 		cs = (sc_logic)'Z';
@@ -40,5 +41,34 @@ void exchanger::exchanging() {
 		cout << "Device: "<< device <<" is done.\n";
 
 		permit->unlock();
+		*///!!!!(UN)COMMENT ME TO ADD WRITE PROCESS IN, COMMENT WRITE PROCESS OUT TO EASILY SEE 3 READ SEMAPHORES WORKING!!!!!
+
+
+
+		//********READING************
+		cout << "Device: " << device << " at " << sc_time_stamp() << " has requested to read...\n";
+		readpermit->wait();
+	
+		cout << "Device: " << device << " at " << sc_time_stamp() << " Got a read semaphore "  << "\n";
+		startaddr = rand() % ADDR_SPACE;
+		numreadbytes = rand() % 63;
+		for (i = 0; i < numreadbytes; i++){
+			addr = (sc_lv<ADDRESS>)(startaddr + i);
+			cs = (sc_logic)'1';
+			rwbar = (sc_logic)'1';
+			cout << "Device: " << device << " reads from memory: " << dataout << endl;
+
+			wait(delay, SC_NS);
+		}
+
+		cs = (sc_logic)'Z';
+		rwbar = (sc_logic)'Z';
+
+						
+		readpermit->post();
+
+
+
+
 	}
 }

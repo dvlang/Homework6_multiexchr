@@ -40,6 +40,7 @@ SC_MODULE(multiExchanger)
 			EXC1->dataout(databusout1);
 			EXC1->addr(addrbus1);
 			EXC1->permit=&memBusses;  // Pass mutex reference
+			EXC1->readpermit = &readBusses;  // Pass semaphore reference
 
 		EXC2 = new exchanger("EXC2_Instance", 2,20);
 			EXC2->cs(cs2);
@@ -48,6 +49,8 @@ SC_MODULE(multiExchanger)
 			EXC2->dataout(databusout2);
 			EXC2->addr(addrbus2);
 			EXC2->permit=&memBusses;  // Pass mutex reference
+			EXC2->readpermit = &readBusses;  // Pass semaphore reference
+
 		EXC3 = new exchanger("EXC3_Instance", 3, 30);
 			EXC3->cs(cs3);
 			EXC3->rwbar(rwbar3);
@@ -55,6 +58,8 @@ SC_MODULE(multiExchanger)
 			EXC3->dataout(databusout3);
 			EXC3->addr(addrbus3);
 			EXC3->permit = &memBusses;  // Pass mutex reference
+			EXC3->readpermit = &readBusses;  // Pass semaphore reference
+
 		EXC4 = new exchanger("EXC4_Instance", 4,40);
 			EXC4->cs(cs4);
 			EXC4->rwbar(rwbar4);
@@ -62,6 +67,7 @@ SC_MODULE(multiExchanger)
 			EXC4->dataout(databusout4);
 			EXC4->addr(addrbus4);
 			EXC4->permit = &memBusses;  // Pass mutex reference
+			EXC4->readpermit = &readBusses;  // Pass semaphore reference
 			
 
 		MEM = new Memory("MEM_Instance");
@@ -71,6 +77,6 @@ SC_MODULE(multiExchanger)
 	
 	}
 
-	//SC_CTOR(multiExchanger) : readBusses(3) {};
+
 };
  
