@@ -12,7 +12,7 @@ void exchanger::exchanging() {
 		wait(delay*30,SC_NS);
 	
 	//********WRITING************
-	/*  !!!!(UN)COMMENT ME TO ADD WRITE PROCESS IN, COMMENT WRITE PROCESS OUT TO EASILY SEE 3 READ SEMAPHORES WORKING!!!!!
+	  //!!!!(UN)COMMENT ME TO ADD WRITE PROCESS IN, COMMENT WRITE PROCESS OUT TO EASILY SEE 3 READ SEMAPHORES WORKING!!!!!
 		cout << "Device: "<< device <<" at " << sc_time_stamp() <<" has requested to write...\n";
 
 		permit->lock();
@@ -41,12 +41,12 @@ void exchanger::exchanging() {
 		cout << "Device: "<< device <<" is done.\n";
 
 		permit->unlock();
-		*///!!!!(UN)COMMENT ME TO ADD WRITE PROCESS IN, COMMENT WRITE PROCESS OUT TO EASILY SEE 3 READ SEMAPHORES WORKING!!!!!
+		 //!!!!(UN)COMMENT ME TO ADD WRITE PROCESS IN, COMMENT WRITE PROCESS OUT TO EASILY SEE 3 READ SEMAPHORES WORKING!!!!!
 
 
 
 		//********READING************
-		cout << "Device: " << device << " at " << sc_time_stamp() << " has requested to read...\n";
+	/*	cout << "Device: " << device << " at " << sc_time_stamp() << " has requested to read...\n";
 		readpermit->wait();
 	
 		cout << "Device: " << device << " at " << sc_time_stamp() << " Got a read semaphore "  << "\n";
@@ -66,7 +66,7 @@ void exchanger::exchanging() {
 
 						
 		readpermit->post();
-
+		*/
 
 
 

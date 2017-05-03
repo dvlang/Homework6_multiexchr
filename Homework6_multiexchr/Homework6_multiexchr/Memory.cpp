@@ -16,15 +16,15 @@ void Memory::memwrite() {
 			ad = (sc_uint<ADDRESS>)addr1;
 			mem[ad] = datain1;
 		}
-		else if (((sc_logic)rwbar2 == '0') && ((sc_logic)cs2 == '1')) {
+		if (((sc_logic)rwbar2 == '0') && ((sc_logic)cs2 == '1')) {
 				ad = (sc_uint<ADDRESS>)addr2;
 				mem[ad] = datain2;
 		}
-		else if (((sc_logic)rwbar3 == '0') && ((sc_logic)cs3 == '1')) {
+		if (((sc_logic)rwbar3 == '0') && ((sc_logic)cs3 == '1')) {
 			ad = (sc_uint<ADDRESS>)addr3;
 			mem[ad] = datain3;
 		}
-		else if (((sc_logic)rwbar4 == '0') && ((sc_logic)cs4 == '1')) {
+		if (((sc_logic)rwbar4 == '0') && ((sc_logic)cs4 == '1')) {
 			ad = (sc_uint<ADDRESS>)addr4;
 			mem[ad] = datain4;
 		}
