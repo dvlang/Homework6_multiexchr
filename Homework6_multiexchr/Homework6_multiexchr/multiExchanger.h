@@ -18,6 +18,7 @@ SC_MODULE(multiExchanger)
 	sc_signal_resolved cs1, cs2, cs3, cs4, rwbar1, rwbar2, rwbar3, rwbar4;
 
 	sc_mutex memBusses;
+	sc_semaphore readBusses;
 
 	exchanger* EXC1;
 	exchanger* EXC2;
@@ -30,7 +31,7 @@ SC_MODULE(multiExchanger)
 	void clocking();
 	void displaying();
 	
-	SC_CTOR(multiExchanger)
+	SC_CTOR(multiExchanger):readBusses(3)
 	{
 		EXC1 = new exchanger("EXC1_Instance", 1, 10); 
 			EXC1->cs(cs1);
@@ -66,6 +67,10 @@ SC_MODULE(multiExchanger)
 		MEM = new Memory("MEM_Instance");
 			//(*MEM) (addrbus, databusin, databusout, cs, rwbar);
 			(*MEM) (addrbus1, databusin1, databusout1, addrbus2, databusin2, databusout2, addrbus3, databusin3, databusout3, addrbus4, databusin4, databusout4, cs1, cs2, cs3, cs4, rwbar1, rwbar2, rwbar3, rwbar4);
+	
+	
 	}
+
+	//SC_CTOR(multiExchanger) : readBusses(3) {};
 };
  
