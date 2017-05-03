@@ -33,7 +33,7 @@ SC_MODULE(multiExchanger)
 	
 	SC_CTOR(multiExchanger):readBusses(3)
 	{
-		EXC1 = new exchanger("EXC1_Instance", 1, 10); 
+		EXC1 = new exchanger("EXC1_Instance", 1, 1); 
 			EXC1->cs(cs1);
 			EXC1->rwbar(rwbar1);
 			EXC1->datain(databusin1);
@@ -42,7 +42,7 @@ SC_MODULE(multiExchanger)
 			EXC1->permit=&memBusses;  // Pass mutex reference
 			EXC1->readpermit = &readBusses;  // Pass semaphore reference
 
-		EXC2 = new exchanger("EXC2_Instance", 2,20);
+		EXC2 = new exchanger("EXC2_Instance", 2,1);
 			EXC2->cs(cs2);
 			EXC2->rwbar(rwbar2);
 			EXC2->datain(databusin2);
@@ -51,7 +51,7 @@ SC_MODULE(multiExchanger)
 			EXC2->permit=&memBusses;  // Pass mutex reference
 			EXC2->readpermit = &readBusses;  // Pass semaphore reference
 
-		EXC3 = new exchanger("EXC3_Instance", 3, 30);
+		EXC3 = new exchanger("EXC3_Instance", 3, 1);
 			EXC3->cs(cs3);
 			EXC3->rwbar(rwbar3);
 			EXC3->datain(databusin3);
@@ -60,7 +60,7 @@ SC_MODULE(multiExchanger)
 			EXC3->permit = &memBusses;  // Pass mutex reference
 			EXC3->readpermit = &readBusses;  // Pass semaphore reference
 
-		EXC4 = new exchanger("EXC4_Instance", 4,40);
+		EXC4 = new exchanger("EXC4_Instance", 4,1);
 			EXC4->cs(cs4);
 			EXC4->rwbar(rwbar4);
 			EXC4->datain(databusin4);
