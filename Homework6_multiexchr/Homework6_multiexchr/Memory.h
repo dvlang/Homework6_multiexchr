@@ -6,10 +6,7 @@
 #define ADDR_SPACE 1024
  
 SC_MODULE (Memory) {
-/*	sc_in_rv <ADDRESS> addr;
-	sc_in_rv <WORD_LENGTH> datain;
-	sc_out_rv <WORD_LENGTH> dataout;
-*/
+
 	sc_in_rv <ADDRESS> addr1;
 	sc_in_rv <WORD_LENGTH> datain1;
 	sc_out_rv <WORD_LENGTH> dataout1;
@@ -23,7 +20,7 @@ SC_MODULE (Memory) {
 	sc_in_rv <WORD_LENGTH> datain4;
 	sc_out_rv <WORD_LENGTH> dataout4;
 
-	//sc_in_resolved cs, rwbar;
+
 	sc_in_resolved cs1, cs2, cs3, cs4, rwbar1, rwbar2, rwbar3, rwbar4;
 
 	sc_uint <WORD_LENGTH> mem [ADDR_SPACE];
@@ -36,11 +33,11 @@ SC_MODULE (Memory) {
 	SC_CTOR(Memory) {
 		SC_THREAD (meminit);
 		SC_METHOD (memread);
-			//sensitive << addr << cs << rwbar;
+
 			sensitive << addr1 << addr2 << addr3 << addr4 << cs1<< cs2<< cs3<< cs4 << rwbar1 << rwbar2 << rwbar3 << rwbar4;
 
 		SC_METHOD (memwrite);
-			//sensitive << addr << datain << cs << rwbar;
+
 			sensitive << addr1 << addr2 << addr3 << addr4 << cs1 << cs2 << cs3 << cs4 << rwbar1 << rwbar2 << rwbar3 << rwbar4;
 		SC_THREAD (memdump);
 	}
