@@ -41,6 +41,7 @@ void exchanger::exchanging() {
 				addr = (sc_lv<ADDRESS>)(startaddr + i);
 				cs = (sc_logic)'1';
 				rwbar = (sc_logic)'0';
+				wait(1, SC_NS);	//delay 1 sec to let var propagate
 				cout << "Device: " << device << " at " << sc_time_stamp() << " WRITE to memory ADDR:  " << addr << " DATA: " << datain << endl;
 				wait(delay, SC_NS);	//each device will have its own delay
 
@@ -60,7 +61,7 @@ void exchanger::exchanging() {
 
 		}
 		else {
-
+			wait(delay, SC_NS);	//each device will have its own delay
 			//********READING************
 			cout << "Device: " << device << " at " << sc_time_stamp() << " has requested to read...\n";
 			readpermit->wait();
@@ -74,6 +75,7 @@ void exchanger::exchanging() {
 				addr = (sc_lv<ADDRESS>)(startaddr + i);
 				cs = (sc_logic)'1';
 				rwbar = (sc_logic)'1';
+				wait(1, SC_NS);	//delay 1 sec to let var propagate
 				cout << "Device: " << device << " at " << sc_time_stamp() << " READ from memory ADDR:  "<< addr<< " DATA: " << dataout << endl;
 
 				wait(delay, SC_NS);
